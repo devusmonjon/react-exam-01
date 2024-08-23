@@ -1,0 +1,11 @@
+export { default as Logo } from "./logo";
+export { default as FacebookIcon } from "./facebook-icon";
+export { default as TwitterIcon } from "./twitter-icon";
+export { default as InstagramIcon } from "./instagram-icon";
+export { default as PinterestIcon } from "./pinterest-icon";
+export { default as YoutubeIcon } from "./youtube-icon";
+export { default as PhoneIcon } from "./phone-icon";
+export { default as LocationIcon } from "./location-icon";
+export { default as HeartIcon } from "./heart-icon";
+export { default as CartIcon } from "./cart-icon";
+export { default as ProfileIcon } from "./profile-icon";
