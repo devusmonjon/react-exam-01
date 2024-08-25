@@ -10,7 +10,7 @@ const SearchBar = () => {
     const [state, dispatch] = useStateValue();
 
     const {data: categories} = useFetch("/products/category-list");
-    const {data: searchRes} = useFetch(`/products/search?q=${searchQuery}`, {}, [searchQuery]);
+    const {data: searchRes, loading} = useFetch(`/products/search?q=${searchQuery}`, {}, [searchQuery]);
 
     const input = useRef(null);
     useEffect(() => {
@@ -66,7 +66,7 @@ const SearchBar = () => {
         </div>
         <div className="w-full mt-5 overflow-y-auto h-[80%]">
             {searchQuery.length >= 3 ? (
-                <Products title={<>Search results for: <span className="text-red-500">{searchQuery}</span></>} data={searchRes} />
+                <Products title={<>Search results for: <span className="text-red-500">{searchQuery}</span></>} data={searchRes?.products} loading={loading} />
             ) : (<h1 className={`mx-[60px] text-[20px] font-bold`}>Please enter minimum 3 letters</h1>)}
         </div>
     </div>

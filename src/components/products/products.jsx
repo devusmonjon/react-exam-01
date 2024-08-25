@@ -10,7 +10,7 @@ const Products = ({ data, title, loading, categories = [], activeCategory = -1, 
   return <section>
     <div className="container">
       <SectionTitle title={title} list={categories} defaultActive={activeCategory} activeChanger={activeChanger} between={true} width={categoriesWidth} />
-      <div className="flex justify-center flex-wrap sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[25px]">
+      <div className="flex justify-center flex-wrap sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[25px]">
         {/* eslint-disable-next-line */}
         {!loading ? data?.map((product) => (
             <Product key={product.id} product={product} />

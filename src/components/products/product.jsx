@@ -16,7 +16,7 @@ const Product = ({product}) => {
         }
     }
     // eslint-disable-next-line
-    return <div className={`rounded-[15px] border-[1px] border-[#ECECEC] p-[25px] w-full sm:w-full`}>
+    return <div className={`rounded-[15px] border-[1px] border-[#ECECEC] p-[25px] min-w-[300px] w-full sm:w-full`}>
         {/* eslint-disable-next-line react/prop-types */}
         <img src={product.images[0]} alt={product.title} onClick={() => navigate(`/products/${product.id}`)}
              className={`object-contain h-[246px] w-full duration-300 hover:scale-105 cursor-pointer`}/>
