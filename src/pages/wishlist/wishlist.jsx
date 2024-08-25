@@ -18,8 +18,9 @@ const Wishlist = () => {
     useEffect(() => {
         setCategories(["all", ...state.wishlist.map(item => (item.category))])
     }, [state.wishlist]);
-    console.log(categories)
-    return <Products title={"Wishlist"} data={data} activeCategory={activeCategory} setActiveCategory={setActiveCategory} categories={categories} categoriesWidth={"auto"} />
+    return data.length < 0 ? <Products title={"Wishlist"} data={data} activeCategory={activeCategory} setActiveCategory={setActiveCategory} categories={categories} categoriesWidth={"auto"} /> : <div className={`container`}>
+        <Products title={"Wishlist is empty"} categories={["all"]} activeCategory={0} categoriesWidth={"mix-content"} setActiveCategory={() => null} />
+    </div>
 }
 
 export default memo(Wishlist);

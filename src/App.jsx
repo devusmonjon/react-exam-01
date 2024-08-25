@@ -5,6 +5,7 @@ import SingleProduct from "@/pages/single-product/single-product";
 import Wishlist from "@/pages/wishlist/wishlist";
 import {memo} from "react";
 import ProductsPage from "@/pages/products/products.jsx";
+import NotFound from "@/pages/404.jsx";
 
 const App = () => {
     return (
@@ -15,7 +16,7 @@ const App = () => {
                     <Route path="products/:id" element={<SingleProduct />} />
                     <Route path="products" element={<ProductsPage />} />
                     <Route path="wishlist" element={<Wishlist />} />
-                    <Route path="*" element={<div className={`container text-center font-bold my-10 text-[50px]`}>404 not found</div>} />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
         </>
