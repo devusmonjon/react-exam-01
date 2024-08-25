@@ -12,9 +12,10 @@ const Products = ({ data, title, loading, categories = [], activeCategory = -1, 
       <SectionTitle title={title} list={categories} defaultActive={activeCategory} activeChanger={activeChanger} between={true} width={categoriesWidth} />
       <div className="flex justify-center flex-wrap sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[25px]">
         {/* eslint-disable-next-line */}
-        {!loading ? data?.map((product) => (
+        {data?.map((product) => (
             <Product key={product.id} product={product} />
-        )) : [1,1,1,1,1,1,1,1,1,1].map((_, i) => (
+        ))}
+        {loading && [1,2,3,4,5,6,7,8].map((_, i) => (
             <Skeleton key={i} />
         ))}
       </div>

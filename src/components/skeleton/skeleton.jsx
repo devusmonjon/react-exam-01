@@ -2,7 +2,7 @@ import {memo} from "react";
 import {CartIcon} from "@/assets/icons/index.js";
 
 const Skeleton = () => {
-    return <div className={`rounded-[15px] border-[1px] p-[10px] border-[#ECECEC] h-[484px] overflow-hidden`}>
+    return <div className={`rounded-[15px] border-[1px] border-[#ECECEC] p-[25px] min-w-[300px] w-full sm:w-full overflow-hidden`}>
         <div
             className={` h-[246px] w-full bg-[#ddd] rounded-[5px]`}></div>
         <span className={`inline-block mt-[5px] text-[#ADADAD]  text-[16px] font-normal leading-[24px] w-[48px] bg-[#ddd] rounded-[5px] h-[21px]`}></span>
