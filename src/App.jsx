@@ -6,6 +6,7 @@ import Wishlist from "@/pages/wishlist/wishlist";
 import {memo} from "react";
 import ProductsPage from "@/pages/products/products.jsx";
 import NotFound from "@/pages/404.jsx";
+import Cart from "@/pages/cart/cart.jsx";
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                     <Route path="products/:id" element={<SingleProduct />} />
                     <Route path="products" element={<ProductsPage />} />
                     <Route path="wishlist" element={<Wishlist />} />
+                    <Route path="cart" element={<Cart />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
