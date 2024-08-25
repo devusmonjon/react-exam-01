@@ -1,21 +1,21 @@
-import {Product, SectionTitle} from "@/components/index.js";
-import {memo, useState} from "react";
-import {useFetch} from "@/hooks/useFetch.jsx";
+import {Product, SectionTitle, Skeleton} from "@/components/index.js";
+import {memo} from "react";
 
-const Products = () => {
-  const [activeCategory, setActiveCategory] = useState(-1);
-  const { data: categories } = useFetch("/products/category-list");
-  const { data, loading } = useFetch(`/products${activeCategory >= 0 ? `/category/${categories[activeCategory]}` : ""}`, { limit: 10 }, [activeCategory]);
+// eslint-disable-next-line
+const Products = ({ data, title, loading, categories = [], activeCategory = -1, setActiveCategory, categoriesWidth = "600px" }) => {
+
   const activeChanger = (index) => {
     setActiveCategory(index);
   }
-  console.log(data)
   return <section>
     <div className="container">
-      <SectionTitle title="Products" list={categories} defaultActive={activeCategory} activeChanger={activeChanger} between={true} width={"600px"} />
+      <SectionTitle title={title} list={categories} defaultActive={activeCategory} activeChanger={activeChanger} between={true} width={categoriesWidth} />
       <div className="flex justify-center flex-wrap sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[25px]">
-        {data?.products?.map((product) => (
+        {/* eslint-disable-next-line */}
+        {!loading ? data?.map((product) => (
             <Product key={product.id} product={product} />
+        )) : [1,1,1,1,1,1,1,1,1,1].map((_, i) => (
+            <Skeleton key={i} />
         ))}
       </div>
     </div>

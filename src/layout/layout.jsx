@@ -1,16 +1,19 @@
-import { Outlet } from "react-router";
-import { Footer, Navbar } from "../components";
+import {Outlet} from "react-router";
+import {Footer, Navbar, SearchBar} from "../components";
+import {memo} from "react";
 
 const Layout = () => {
-  return (
-    <>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <SearchBar/>
+            <Navbar/>
+            <main>
+
+                <Outlet/>
+            </main>
+            <Footer/>
+        </>
+    );
 };
 
-export default Layout;
+export default memo(Layout);

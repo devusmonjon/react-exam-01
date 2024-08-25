@@ -1,12 +1,20 @@
 import {memo} from "react";
 import ReactStars from "react-stars/dist/react-stars.js";
 import {} from "number-brm";
-import {CartIcon} from "@/assets/icons/index.js";
+import {CartIcon} from "@/assets/icons";
 import {useNavigate} from "react-router-dom";
+import {useStateValue} from "@/context";
 
 // eslint-disable-next-line
 const Product = ({product}) => {
     const navigate = useNavigate();
+    const [state, dispatch] = useStateValue();
+
+    const addToCartHandler = () => {
+        if (!state.cart.some(item => item.id === product?.id)) {
+            dispatch({type: "ADD_TO_CART", payload: {product, quantity: 1}})
+        }
+    }
     // eslint-disable-next-line
     return <div className={`rounded-[15px] border-[1px] border-[#ECECEC] p-[25px] w-full sm:w-full`}>
         {/* eslint-disable-next-line react/prop-types */}
@@ -30,7 +38,9 @@ const Product = ({product}) => {
                 {/* eslint-disable-next-line react/prop-types */}
                 <span className={`text-[#ADADAD] text-[14px] font-bold leading-[24px] line-through`}>${((product.price / 100) * product.discountPercentage).brm()}</span>
             </div>
-            <button className={`duration-300 hover:text-light hover:bg-primary w-[85px] h-[36px] flex items-center justify-center rounded-[4px] text-primary bg-light-primary font-bold leading-[24px] gap-[10px]`}>
+            <button
+                className={`duration-300 hover:text-light hover:bg-primary w-[85px] h-[36px] flex items-center justify-center rounded-[4px] text-primary bg-light-primary font-bold leading-[24px] gap-[10px]`}
+                onClick={addToCartHandler}>
                 <CartIcon color={"currentColor"} width={16} height={16} />
                 Add
             </button>

@@ -1,4 +1,6 @@
 // eslint-disable-next-line
+import {memo} from "react";
+
 const Category = ({ title, productsCount, photo, bgColor }) => {
   return <div className="min-w-[137px] min-h-[180.19px] border-1 border-[#F4F6FA] rounded-[10px]" style={{
     backgroundColor: bgColor
@@ -11,4 +13,4 @@ const Category = ({ title, productsCount, photo, bgColor }) => {
   </div>;
 };
 
-export default Category;
+export default memo(Category);

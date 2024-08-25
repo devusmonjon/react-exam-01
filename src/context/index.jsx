@@ -1,4 +1,4 @@
-import {createContext, useContext, useReducer} from "react";
+import {createContext, memo, useContext, useReducer} from "react";
 
 const Context = createContext();
 
@@ -8,4 +8,4 @@ const ContextProvider = ({initialState, reducer, children}) => {
 }
 
 export const useStateValue = () => useContext(Context);
-export default ContextProvider;
+export default memo(ContextProvider);

@@ -9,17 +9,25 @@ import Product from "./products/product";
 import Newsletter from "./newsletter/newsletter";
 import NewsletterForm from "./newsletter/newsletter-form";
 import Footer from "./footer/footer";
+import SearchBar from "./search/search-bar";
+import SingleProductComponent from ".//single-product/single-product";
+import Breadcrumb from "./breadcrumb/breadcrumb";
+import Skeleton from ".//skeleton/skeleton";
 
 export {
-  SectionTitle,
-  Navbar,
-  Hero,
-  Categories,
-  Banners,
-  Banner,
-  Products,
-  Product,
-  Newsletter,
-  NewsletterForm,
-  Footer,
+    SectionTitle,
+    Navbar,
+    Hero,
+    Categories,
+    Banners,
+    Banner,
+    Products,
+    Product,
+    Newsletter,
+    NewsletterForm,
+    Footer,
+    SearchBar,
+    SingleProductComponent,
+    Breadcrumb,
+    Skeleton
 };

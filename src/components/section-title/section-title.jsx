@@ -1,4 +1,6 @@
 // eslint-disable-next-line
+import {memo} from "react";
+
 const SectionTitle = ({title, list = [], between = false, defaultActive = -1, activeChanger, width = "100%"}) => {
   return <div className={`flex ${between ? 'justify-between' : ''} items-baseline gap-[30px] py-[44px] md:flex-row flex-col`}>
     <h1 className={`whitespace-nowrap text-dark text-[22px] md:text-[32px] font-bold`}>{title}</h1>
@@ -7,11 +9,11 @@ const SectionTitle = ({title, list = [], between = false, defaultActive = -1, ac
     }}>
       {list?.map((item, index) => (
           <li key={item}>
-            <button className={`whitespace-nowrap text-[16px] font-semibold leading-[16px] ${defaultActive === index ? "text-primary" : "text-dark"}`} onClick={() => activeChanger(index)}>{item}</button>
+            <button className={`whitespace-nowrap text-[16px] font-semibold leading-[16px] ${defaultActive === index ? "text-primary" : "text-dark"}`} onClick={() => activeChanger(index)}>{item.split("-").join(" ")}</button>
           </li>
       ))}
     </ul>
   </div>;
 };
 
-export default SectionTitle;
+export default memo(SectionTitle);

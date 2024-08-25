@@ -1,5 +1,6 @@
 import newsletterImage from "@/assets/images/newsletter.png";
 import {NewsletterForm} from "@/components/index.js";
+import {memo} from "react";
 
 const Newsletter = () => {
     return <div
@@ -18,4 +19,4 @@ const Newsletter = () => {
     </div>
 };
 
-export default Newsletter;
+export default memo(Newsletter);

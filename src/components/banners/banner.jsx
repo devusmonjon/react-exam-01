@@ -1,4 +1,6 @@
 // eslint-disable-next-line
+import {memo} from "react";
+
 const Banner = ({ title, image }) => {
   return <div className={`rounded-[10px] h-[300.38px] relative w-full p-[60px_40px] overflow-hidden`}>
     <img src={image} alt="title" className="-z-10 absolute object-cover object-right-bottom w-full h-full bottom-0 right-0" />
@@ -7,4 +9,4 @@ const Banner = ({ title, image }) => {
   </div>;
 };
 
-export default Banner;
+export default memo(Banner);

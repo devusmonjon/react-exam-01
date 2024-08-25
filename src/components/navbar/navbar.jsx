@@ -2,14 +2,16 @@ import {Link, NavLink} from "react-router-dom";
 import {CartIcon, HeartIcon, Logo, ProfileIcon} from "@/assets/icons";
 import {IoIosSearch} from "react-icons/io";
 import {useStateValue} from "@/context";
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
+import {useFetch} from "@/hooks/useFetch.jsx";
 
 const Navbar = () => {
     // eslint-disable-next-line
     const [searchFocus, setSearchFocus] = useState(false);
     const [navbarshrink, setNavbarshrink] = useState(false);
     const [scroll, setScroll] = useState(0);
-    const [state] = useStateValue();
+    const [state, dispatch] = useStateValue();
+    const {data: categories} = useFetch("/products/category-list");
 
 
     useEffect(() => {
@@ -34,16 +36,18 @@ const Navbar = () => {
             <div
                 className={`items-center justify-between bg-light rounded-[4px] max-w-[822px] w-full relative overflow-hidden border-2 border-[#BCE3C9] hidden md:flex`}>
                 <select className={`p-[10px_14px] cursor-pointer text-dark outline-none lg:block hidden`}>
-                    <option>All categories</option>
+                    <option data-category={""}>All categories</option>
+                    {categories?.map(category => (
+                        <option data-category={""} key={category}>{category.split("-").join(" ")}</option>
+                    ))}
                 </select>
                 <span className={`w-[1px] h-[20px] bg-[#CACACA] mx-[15px] lg:inline-block hidden`}></span>
                 <form
                     className={`w-full flex pr-[14px] items-center`}
                     onSubmit={(e) => e.preventDefault()}
                 >
-                    <input type="text" placeholder="Search for items..." className={`w-full outline-none p-[10px_14px]`}
-                           onFocus={() => setSearchFocus(true)}
-                           onBlur={() => setSearchFocus(false)}
+                    <input type="text" placeholder="Search for items..." readOnly={true} className={`w-full outline-none p-[10px_14px]`}
+                           onClick={() => dispatch({type: "SEARCH_UPDATE", payload: true})}
                     />
                     <button type="submit">
                         <IoIosSearch size={20} color={`gray`}/>
@@ -80,8 +84,6 @@ const Navbar = () => {
                              className={`flex items-baseline text-[#7E7E7E] text-[16px] font-normal leading-[16px] gap-[5px]`}>
                         <div className="relative">
                             <ProfileIcon/>
-                            <span
-                                className={`absolute left-[16px] bottom-[12px] w-[20px] h-[20px] flex items-center justify-center bg-primary rounded-full text-white text-[16px] ${state.cart.length > 0 ? "" : "hidden"}`}>{state.cart.length}</span>
                         </div>
                         <span className="hidden lg:inline-block">Account</span>
                     </NavLink>
@@ -91,4 +93,4 @@ const Navbar = () => {
     </header>;
 };
 
-export default Navbar;
+export default memo(Navbar);

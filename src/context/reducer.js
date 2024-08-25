@@ -1,6 +1,7 @@
 export const initialState = {
     cart: JSON.parse(localStorage.getItem("cart")) || [],
     wishlist: JSON.parse(localStorage.getItem("wishlist")) || [],
+    isSearchOpen: false,
 }
 
 export const reducer = (state, action) => {
@@ -8,7 +9,7 @@ export const reducer = (state, action) => {
         // cart
         case "ADD_TO_CART":
             localStorage.setItem("cart", JSON.stringify([...state.cart, {...action.payload, quantity: 1}]))
-            return {...state, cart: [...state.cart, {...action.payload, quantity: 1}]}
+            return {...state, cart: [...state.cart, {...action.payload.product, quantity: action.payload.quantity}]}
         case "REMOVE_FROM_CART":
             localStorage.setItem("cart", JSON.stringify(state.cart.filter(cart => cart.id !== action.payload.id)))
             return {...state, cart: state.cart.filter(cart => cart.id !== action.payload.id) }
@@ -31,6 +32,8 @@ export const reducer = (state, action) => {
         case "RESET_WISHLIST":
             localStorage.setItem("wishlist", JSON.stringify([]))
             return {...state, wishlist: []}
+        case "SEARCH_UPDATE":
+            return {...state, isSearchOpen: action.payload}
         default:
             return state
     }

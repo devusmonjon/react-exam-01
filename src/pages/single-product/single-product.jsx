@@ -1,13 +1,41 @@
 import {useParams} from "react-router-dom";
+import {useStateValue} from "@/context";
+import {memo, useEffect, useState} from "react";
+import {Breadcrumb, SingleProductComponent} from "@/components";
+import {useFetch} from "@/hooks/useFetch.jsx";
 
 const SingleProduct = () => {
     const {id} = useParams();
+    const [quantity, setQuantity] = useState(1);
+
+    const [state, dispatch] = useStateValue()
+
+    const {data} = useFetch(`/products/${id}`, {}, [id]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0, { behavior: "smooth" });
+        if (state.isSearchOpen) {
+            dispatch({ type: "SEARCH_UPDATE", payload: false })
+        }
+    }, [id])
     return (<div className={`container`}>
-            <h1 className={`container text-center font-bold mt-10 mb-2 text-[50px]`}>Page in maintance</h1>
-            <h1 className={`text-center`}>Product: {id}</h1>
-            <img src="https://i.pinimg.com/736x/a0/d4/d9/a0d4d9ea590fe1c18ce7e35abe5b7385.jpg" alt="" className={`w-full h-[60vh] object-contain object-center`} />
+            <Breadcrumb list={[
+                {
+                    id: 1,
+                    path: "/products",
+                    active: true,
+                    title: "Products"
+                },
+                {
+                    id: 2,
+                    path: `/products/${id}`,
+                    active: false,
+                    title: data?.title
+                },
+            ]} />
+            <SingleProductComponent product={data} quantity={quantity} setQuantity={setQuantity} isAddedToCart={state.cart.some(item => item.id === data?.id)} isAddedToWishlist={state.wishlist.some(item => item.id === data?.id)} dispatch={dispatch} />
         </div>
     )
 }
 
-export default SingleProduct;
+export default memo(SingleProduct);

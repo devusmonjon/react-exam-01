@@ -8,6 +8,7 @@ export const useFetch = (path, params = {}, deps = []) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(path, { params })
       .then((res) => {

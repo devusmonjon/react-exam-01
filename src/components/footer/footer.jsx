@@ -15,6 +15,7 @@ import {
   TwitterIcon,
   YoutubeIcon
 } from "@/assets/icons/index.js";
+import {memo} from "react";
 const Footer = () => {
   return (
       <footer className="container mt-10">
@@ -208,4 +209,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

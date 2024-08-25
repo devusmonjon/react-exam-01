@@ -1,5 +1,6 @@
 import heroImage from "@/assets/images/hero.png";
 import { NewsletterForm } from "@/components/index.js";
+import {memo} from "react";
 
 const Hero = () => {
   return <div className="container mt-[20px] relative h-[35vh] md:h-[50vh] p-[20px_25px] sm:p-[40px_45px] md:p-[80px_85px] leading-[62px]">
@@ -14,4 +15,4 @@ const Hero = () => {
   </div>;
 };
 
-export default Hero;
+export default memo(Hero);
