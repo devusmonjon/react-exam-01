@@ -3,14 +3,21 @@ import ReactStars from "react-stars/dist/react-stars.js";
 import {} from "number-brm"
 import {CartIcon, HeartIcon} from "@/assets/icons/index.js";
 
-const SingleProductComponent = ({product, quantity, setQuantity, isAddedToCart = true, isAddedToWishlist = false, dispatch}) => {
+const SingleProductComponent = ({
+                                    product,
+                                    quantity,
+                                    setQuantity,
+                                    isAddedToCart = true,
+                                    isAddedToWishlist = false,
+                                    dispatch
+                                }) => {
     const [activeProduct, setActiveProduct] = useState(0);
     const discount = product?.price - (product?.price / 100) * product?.discountPercentage;
-    return <div className={`flex gap-[55px]`}>
-        <div className={`w-[450px] flex flex-col gap-[30px]`}>
-            <div className={`w-[450px] h-[450px]`}>
+    return <div className={`flex gap-[55px] flex-col lg:flex-row`}>
+        <div className={`w-full sm:w-[450px] flex flex-col gap-[30px]`}>
+            <div className={`w-full sm:w-[450px] sm:h-[450px] `}>
                 <img src={product?.images[activeProduct]} alt={product?.title}
-                     className={`object-contain object-center rounded-[16px] border-[1px] border-[#ddd] p-[50px]`}/>
+                     className={`object-contain object-center w-full sm:w-[450px] rounded-[16px] border-[1px] border-[#ddd] p-[50px]`}/>
             </div>
             <div className={`w-full overflow-x-auto scroll-hide flex gap-[20px]`}>
                 {product?.images.map((image, index) => (
@@ -38,7 +45,7 @@ const SingleProductComponent = ({product, quantity, setQuantity, isAddedToCart =
                     <span className={`inline-block text-[20px] text-[#B6B6B6] font-bold`}>${product?.price}</span>
                 </div>
             </div>
-            <p className={`w-[470px] text-[17px] text-[#7E7E7E] leading-[24px] font-normal pb-[34px]`}>{product?.description}</p>
+            <p className={`w-full lg:w-[470px] text-[17px] text-[#7E7E7E] leading-[24px] font-normal pb-[34px]`}>{product?.description}</p>
             <div className={`flex items-center gap-[14px] pb-[30px]`}>
                 <span className={`text-[#7E7E7E] text-[16px] font-medium leading-[24px]`}>Size / Weight:</span>
                 <ul className={`flex items-center gap-[5px]`}>
@@ -128,7 +135,10 @@ const SingleProductComponent = ({product, quantity, setQuantity, isAddedToCart =
                 )}
                 <button
                     className={`w-[50px] h-[50px] flex items-center justify-center duration-300 hover:bg-light-primary hover:text-primary rounded-[5px] ${isAddedToWishlist ? "bg-primary text-light" : "text-[#253D4E]"}`}
-                    onClick={() => dispatch({type: !isAddedToWishlist ? "ADD_TO_WISHLIST" : "REMOVE_FROM_WISHLIST", payload: product})} title={!isAddedToWishlist ? "Add to wishlist" : "Remove from wishlist"}>
+                    onClick={() => dispatch({
+                        type: !isAddedToWishlist ? "ADD_TO_WISHLIST" : "REMOVE_FROM_WISHLIST",
+                        payload: product
+                    })} title={!isAddedToWishlist ? "Add to wishlist" : "Remove from wishlist"}>
                     <HeartIcon/>
                 </button>
             </div>
